@@ -12,7 +12,7 @@ module.exports = {
     resume: "",
     link: "",
   },
-  useAbout: true,
+  useAbout: false,
   // See https://giscus.app/
   giscus: {
     repo: "devHudi/gatsby-starter-hoodie",

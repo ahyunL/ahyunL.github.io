@@ -2,9 +2,8 @@
 title: "This is about page ✋"
 ---
 
-## English Guide
+## Guide
 
-Hello! This section is dedicated to introducing your blog. Here, you can showcase various information to your visitors, such as a blog introduction, personal profile, resume, portfolio, and more.
 
 ### Writing Guide
 
