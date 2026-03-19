@@ -1,16 +1,17 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const _ = require("lodash")
+const path = require("path")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  const postTemplate = require.resolve(`./src/templates/Post.jsx`)
-  const seriesTemplate = require.resolve(`./src/templates/Series.jsx`)
+  const postTemplate = path.resolve(`./src/templates/Post.jsx`)
+  const seriesTemplate = path.resolve(`./src/templates/Series.jsx`)
 
   const result = await graphql(`
     {
       postsRemark: allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: ASC }
+        sort: { frontmatter: { date: ASC } }
         filter: { fileAbsolutePath: { regex: "/contents/posts/" } }
         limit: 1000
       ) {
@@ -25,7 +26,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
       tagsGroup: allMarkdownRemark(limit: 2000) {
-        group(field: frontmatter___tags) {
+        group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
         }
       }
@@ -72,9 +73,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (series.length > 0) {
     series.forEach(singleSeries => {
-      const path = `/series/${_.replace(singleSeries, /\s/g, "-")}`
+      const seriesPath = `/series/${_.replace(singleSeries, /\s/g, "-")}`
       createPage({
-        path,
+        path: seriesPath,
         component: seriesTemplate,
         context: {
           series: singleSeries,
@@ -108,8 +109,10 @@ exports.createSchemaCustomization = ({ actions }) => {
   type Frontmatter {
     title: String!
     description: String
-    tags: [String!]!
+    tags: [String!]
     series: String
+    date: Date @dateformat
+    update: Date @dateformat
   }
   `
   createTypes(typeDefs)
