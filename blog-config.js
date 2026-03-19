@@ -1,6 +1,6 @@
 module.exports = {
   title: "Ahyun's",
-  description: "기록을 남기는 공간입니다.",
+  description: "기록",
   author: "Lee Ahyun",
   siteUrl: "https://ahyunL.github.io",
   links: {
