@@ -4,7 +4,7 @@ module.exports = {
   author: "Lee Ahyun",
   siteUrl: "https://ahyunL.github.io",
   links: {
-    github: "https://ahyunL.github.io",
+    github: "https://github.com/ahyunL",
     linkedIn: "https://linkedin.com",
     instagram: "https://www.instagram.com",
     blogger: "https://blog.naver.com/a_ynii",
